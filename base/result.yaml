@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: result
+  namespace: voting
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: result
+  template:
+    metadata:
+      labels:
+        app: result
+    spec:
+      containers:
+        - name: result
+          image: dockersamples/examplevotingapp_result
+          ports:
+            - containerPort: 80
+          env:
+            - name: POSTGRES_HOST
+              value: db
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: result
+  namespace: voting
+spec:
+  selector:
+    app: result
+  ports:
+    - port: 80
+      targetPort: 80
