@@ -21,6 +21,11 @@ spec:
           env:
             - name: POSTGRES_HOST
               value: db
+            - name: PGPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: POSTGRES_PASSWORD
 ---
 apiVersion: v1
 kind: Service

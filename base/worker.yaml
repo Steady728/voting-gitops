@@ -21,3 +21,8 @@ spec:
               value: redis
             - name: DB_HOST
               value: db
+            - name: PGPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: POSTGRES_PASSWORD
