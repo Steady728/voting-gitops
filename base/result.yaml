@@ -18,6 +18,13 @@ spec:
           image: dockersamples/examplevotingapp_result
           ports:
             - containerPort: 80
+          resources:
+            requests:
+              cpu: "50m"
+              memory: "64Mi"
+            limits:
+              cpu: "100m"
+              memory: "128Mi"
           env:
             - name: POSTGRES_HOST
               value: db
